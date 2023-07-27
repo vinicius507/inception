@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: unless-stopped
+    networks:
+      - inception
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+networks:
+  inception:
+    name: "inception-network"
+    external: true
+
+volumes:
+  mariadb-data:
+    external: true
