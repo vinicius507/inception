@@ -8,14 +8,15 @@ up: docker-networks docker-volumes
 down:
 	sudo docker-compose -f $(COMPOSE_FILE) down
 
-rebuild:
+build:
 	sudo docker-compose -f $(COMPOSE_FILE) build --no-cache
 
 clean:
 	sudo docker-compose -f $(COMPOSE_FILE) down --rmi all --remove-orphans
 
-fclean:
-	sudo docker system prune --volumes --all --force
+fclean: clean
+	docker network rm inception-network
+	docker volume rm mariadb-data
 
 re: fclean all
 
@@ -25,4 +26,4 @@ docker-networks:
 docker-volumes:
 	docker volume create mariadb-data
 
-.PHONY: all up down rebuild clean fclean re docker-networks docker-volumes
+.PHONY: all up down build clean fclean re docker-networks docker-volumes
