@@ -3,18 +3,17 @@ version: '3.8'
 services:
   mariadb:
     container_name: mariadb
-    build: 
-      context: ./requirements/mariadb
-      args:
-        - MYSQL_USER
-        - MYSQL_PASSWORD
-        - MYSQL_DATABASE
-        - MYSQL_ROOT_PASSWORD
+    build: ./requirements/mariadb
     restart: unless-stopped
     networks:
       - inception
     volumes:
       - mariadb-data:/var/lib/mysql
+    environment:
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
 networks:
   inception:
