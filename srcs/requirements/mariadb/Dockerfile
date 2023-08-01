@@ -11,15 +11,12 @@ RUN apt update \
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld \
   && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
-  && chmod 777 /var/run/mysqld
+  && chmod 755 /var/run/mysqld
 
-COPY ./conf/mariadb.conf /etc/mysql/mariadb.conf
+COPY ./conf/my.cnf /etc/mysql/my.cnf
 COPY ./tools/entrypoint.sh /tmp/entrypoint.sh
 
 RUN chmod +x /tmp/entrypoint.sh
-
-HEALTHCHECK --start-period=5m \
-  CMD mariadb -e 'SELECT @@datadir;' || exit 1
 
 EXPOSE 3306
 

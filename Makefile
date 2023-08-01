@@ -5,6 +5,9 @@ all: up
 up: docker-networks docker-volumes
 	sudo docker-compose -f $(COMPOSE_FILE) up -d
 
+debug: docker-networks docker-volumes
+	sudo docker-compose -f $(COMPOSE_FILE) up
+
 down:
 	sudo docker-compose -f $(COMPOSE_FILE) down
 
@@ -16,7 +19,7 @@ clean:
 
 fclean: clean
 	docker network rm inception-network
-	docker volume rm mariadb-data
+	docker volume rm mariadb-data wordpress-data
 
 re: fclean all
 
@@ -25,5 +28,6 @@ docker-networks:
 
 docker-volumes:
 	docker volume create mariadb-data
+	docker volume create wordpress-data
 
-.PHONY: all up down build clean fclean re docker-networks docker-volumes
+.PHONY: all up debug down build clean fclean re docker-networks docker-volumes
