@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mysqld --user=mysql --bootstrap <<EOF
+mariadbd --user=mysql --bootstrap <<EOF
 USE mysql;
 FLUSH PRIVILEGES;
 
@@ -17,4 +17,4 @@ GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-exec mysqld_safe
+exec mariadbd-safe
