@@ -3,8 +3,10 @@ FROM debian:bullseye
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt install -y gnupg less lsb-release wget \
-  && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - \
-  && echo "deb https://packages.sury.org/php $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list \
+  && mkdir -p /etc/apt/keyrings \
+  && wget -qO /etc/apt/keyrings/sury.pgp https://packages.sury.org/php/apt.gpg \
+  && echo "deb [signed-by=/etc/apt/keyrings/sury.pgp] https://packages.sury.org/php $(lsb_release -sc) main" \
+    | tee /etc/apt/sources.list.d/php.list \
   && apt update \
   && apt install -y mariadb-client php8.2 php8.2-curl php8.2-fpm php8.2-iconv php8.2-mysql php8.2-zip
 
