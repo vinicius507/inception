@@ -52,6 +52,17 @@ networks:
 
 volumes:
   mariadb-data:
-    external: true
+    name: mariadb-data
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${DATADIR}/mariadb
+
   wordpress-data:
-    external: true
+    name: wordpress-data
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${DATADIR}/wordpress

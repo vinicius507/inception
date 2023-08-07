@@ -2,10 +2,10 @@ COMPOSE_FILE=./srcs/docker-compose.yaml
 
 all: up
 
-up: docker-networks docker-volumes
+up: docker-networks docker-mounts
 	sudo docker-compose -f $(COMPOSE_FILE) up -d
 
-debug: docker-networks docker-volumes
+debug: docker-networks docker-mounts
 	sudo docker-compose -f $(COMPOSE_FILE) up
 
 down:
@@ -19,15 +19,16 @@ clean:
 
 fclean: clean
 	docker network rm inception-network
-	docker volume rm mariadb-data wordpress-data
+	sudo rm -rf /home/vgoncalv/data
 
 re: fclean all
 
 docker-networks:
 	docker network create --driver bridge inception-network 2>&1 &>/dev/null || true
 
-docker-volumes:
-	docker volume create mariadb-data
-	docker volume create wordpress-data
+docker-mounts:
+	sudo mkdir -p /home/vgoncalv/data/mariadb
+	sudo mkdir -p /home/vgoncalv/data/wordpress
+	sudo chown user42:user42 -R /home/vgoncalv
 
-.PHONY: all up debug down build clean fclean re docker-networks docker-volumes
+.PHONY: all up debug down build clean fclean re docker-networks docker-mounts
