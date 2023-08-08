@@ -23,6 +23,7 @@ services:
   redis:
     container_name: redis
     build: ./bonus/redis
+    restart: unless-stopped
     networks:
       - inception
     healthcheck:
@@ -34,6 +35,7 @@ services:
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
+    restart: unless-stopped
     networks:
       - inception
     volumes:
