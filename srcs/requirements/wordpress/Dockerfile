@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y gnupg less lsb-release wget \
+RUN apt update && apt install -y gnupg less libfcgi-bin lsb-release wget \
   && mkdir -p /etc/apt/keyrings \
   && wget -qO /etc/apt/keyrings/sury.pgp https://packages.sury.org/php/apt.gpg \
   && echo "deb [signed-by=/etc/apt/keyrings/sury.pgp] https://packages.sury.org/php $(lsb_release -sc) main" \

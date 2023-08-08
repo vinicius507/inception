@@ -27,6 +27,11 @@ services:
       - inception
     volumes:
       - wordpress-data:/var/www/wordpress
+    healthcheck:
+      test: cgi-fcgi -bind -connect 127.0.0.1:9000
+      interval: 30s
+      timeout: 10s
+      retries: 3
     depends_on:
       mariadb:
         condition: service_healthy
