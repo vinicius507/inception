@@ -18,9 +18,9 @@ clean:
 	sudo docker-compose -f $(COMPOSE_FILE) down --rmi all --remove-orphans
 
 fclean: clean
-	docker network rm inception-network
 	sudo rm -rf /home/vgoncalv/data
-	sed -n '/127.0.0.1 vgoncalv.42.fr/d' /etc/hosts | sudo tee /etc/hosts
+	sudo sed -in '/127.0.0.1 vgoncalv.42.fr/d' /etc/hosts
+	docker network rm inception-network || true
 
 re: fclean all
 
