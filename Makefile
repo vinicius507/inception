@@ -2,10 +2,10 @@ COMPOSE_FILE=./srcs/docker-compose.yaml
 
 all: up
 
-up: docker-networks docker-mounts
+up: hostname docker-networks docker-mounts
 	sudo docker-compose -f $(COMPOSE_FILE) up -d
 
-debug: docker-networks docker-mounts
+debug: hostname docker-networks docker-mounts
 	sudo docker-compose -f $(COMPOSE_FILE) up
 
 down:
@@ -20,6 +20,7 @@ clean:
 fclean: clean
 	docker network rm inception-network
 	sudo rm -rf /home/vgoncalv/data
+	sed -n '/127.0.0.1 vgoncalv.42.fr/d' /etc/hosts | sudo tee /etc/hosts
 
 re: fclean all
 
@@ -30,5 +31,8 @@ docker-mounts:
 	sudo mkdir -p /home/vgoncalv/data/mariadb
 	sudo mkdir -p /home/vgoncalv/data/wordpress
 	sudo chown user42:user42 -R /home/vgoncalv
+
+hostname:
+	echo "127.0.0.1 vgoncalv.42.fr" | sudo tee -a /etc/hosts
 
 .PHONY: all up debug down build clean fclean re docker-networks docker-mounts
