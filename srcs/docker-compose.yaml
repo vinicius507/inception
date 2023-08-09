@@ -92,7 +92,7 @@ services:
 networks:
   inception:
     name: "inception-network"
-    external: true
+    driver: bridge
 
 volumes:
   mariadb-data:
