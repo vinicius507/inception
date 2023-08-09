@@ -8,7 +8,7 @@ RUN apt update && apt install -y gnupg less libfcgi-bin lsb-release wget \
   && echo "deb [signed-by=/etc/apt/keyrings/sury.pgp] https://packages.sury.org/php $(lsb_release -sc) main" \
     | tee /etc/apt/sources.list.d/php.list \
   && apt update \
-  && apt install -y mariadb-client php8.2 php8.2-curl php8.2-fpm php8.2-iconv php8.2-mysql php8.2-zip
+  && apt install -y mariadb-client php8.2 php8.2-curl php8.2-fpm php8.2-iconv php8.2-mysql php8.2-redis php8.2-zip
 
 RUN mkdir -p /var/run/php && chmod 777 /var/run/php
 
