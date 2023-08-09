@@ -51,7 +51,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      MYSQL_HOST: mariadb:3306
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
