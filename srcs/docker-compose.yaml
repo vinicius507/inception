@@ -81,7 +81,7 @@ services:
     volumes:
       - wordpress-data:/var/www/wordpress
     healthcheck:
-      test: curl -sf https://127.0.0.1
+      test: curl --insecure --silent --fail https://127.0.0.1
       interval: 30s
       timeout: 10s
       retries: 3
