@@ -29,6 +29,6 @@ docker-mounts:
 	sudo chown user42:user42 -R /home/vgoncalv
 
 hostname:
-	echo "127.0.0.1 vgoncalv.42.fr" | sudo tee -a /etc/hosts
+	grep -q "vgoncalv.42.fr" /etc/hosts || echo "127.0.0.1 vgoncalv.42.fr" | sudo tee -a /etc/hosts
 
 .PHONY: all up debug down build clean fclean re docker-mounts
