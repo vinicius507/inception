@@ -22,7 +22,7 @@ services:
 
   redis:
     container_name: redis
-    build: ./bonus/redis
+    build: ./requirements/bonus/redis
     restart: unless-stopped
     networks:
       - inception
