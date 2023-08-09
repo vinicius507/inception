@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 mariadbd --user=mysql --bootstrap <<EOF
 USE mysql;
@@ -17,4 +17,4 @@ GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-exec mariadbd-safe
+exec mariadbd

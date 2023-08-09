@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 WP_PATH="/var/www/wordpress"
 
@@ -25,4 +25,4 @@ if ! wp core is-installed; then
   chmod -R 774 "$WP_PATH"
 fi
 
-php-fpm8.2 -F
+exec php-fpm8.2 -F
