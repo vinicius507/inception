@@ -10,7 +10,9 @@ RUN apt update && apt install -y gnupg less libfcgi-bin lsb-release wget \
   && apt update \
   && apt install -y mariadb-client php8.2 php8.2-curl php8.2-fpm php8.2-iconv php8.2-mysql php8.2-redis php8.2-zip
 
-RUN mkdir -p /var/run/php && chmod 777 /var/run/php
+RUN mkdir -p /var/run/php \
+  && chown www-data:www-data /var/run/php \
+  && chmod 755 /var/run/php
 
 RUN mkdir -p /var/www/wordpress \
   && wget -O /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
