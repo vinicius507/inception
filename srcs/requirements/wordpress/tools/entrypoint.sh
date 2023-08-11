@@ -22,7 +22,8 @@ if ! wp core is-installed; then
   wp redis enable --all
 
   chown -R www-data:www-data "$WP_PATH"
-  chmod -R 774 "$WP_PATH"
+  find "$WP_PATH" -type d -exec chmod 755 {} \;
+  find "$WP_PATH" -type f -exec chmod 644 {} \;
 fi
 
 exec php-fpm8.2 -F
