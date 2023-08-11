@@ -1,5 +1,9 @@
-upstream php {
+upstream wordpress {
 	server wordpress:9000;
+}
+
+upstream adminer {
+	server adminer:8000;
 }
 
 server {
@@ -13,20 +17,33 @@ server {
 
 	ssl_protocols TLSv1.2 TLSv1.3;
 
-	root /var/www/wordpress;
+	root /var/www;
 	index index.php;
 
 	location / {
+		root /var/www/wordpress;
 		try_files $uri $uri/ /index.php?q=$uri&$args;
+		location ~ \.php$ {
+			include fastcgi_params;
+			try_files $uri =404;
+			fastcgi_pass wordpress;
+			fastcgi_split_path_info ^(.+\\.php)(/.+)$;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+		}
 	}
 
-	location ~ \.php$ {
-		include fastcgi_params;
-		try_files $uri =404;
-		fastcgi_pass php;
-		fastcgi_split_path_info ^(.+\\.php)(/.+)$;
-		fastcgi_index index.php;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+	location /adminer {
+		try_files $uri $uri/ /adminer/index.php?q=$uri&$args;
+		location ~ \.php$ {
+			include fastcgi_params;
+			try_files $uri =404;
+			fastcgi_pass adminer;
+			fastcgi_split_path_info ^(.+\\.php)(/.+)$;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+		}
 	}
 }

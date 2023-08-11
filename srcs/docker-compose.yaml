@@ -32,6 +32,22 @@ services:
       timeout: 10s
       retries: 3
 
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    networks:
+      - inception
+    volumes:
+      - adminer-data:/var/www/adminer
+    healthcheck:
+      test: cgi-fcgi -bind -connect 127.0.0.1:8000
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
@@ -79,6 +95,7 @@ services:
     networks:
       - inception
     volumes:
+      - adminer-data:/var/www/adminer
       - wordpress-data:/var/www/wordpress
     healthcheck:
       test: curl --insecure --silent --fail https://127.0.0.1
@@ -86,6 +103,8 @@ services:
       timeout: 10s
       retries: 3
     depends_on:
+      adminer:
+        condition: service_healthy
       wordpress:
         condition: service_healthy
   
@@ -102,6 +121,14 @@ volumes:
       o: bind
       type: none
       device: ${DATADIR}/mariadb
+
+  adminer-data:
+    name: adminer-data
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${DATADIR}/adminer
 
   wordpress-data:
     name: wordpress-data

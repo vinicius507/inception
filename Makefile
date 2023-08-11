@@ -26,6 +26,7 @@ re: fclean all
 docker-mounts:
 	sudo mkdir -p /home/vgoncalv/data/mariadb
 	sudo mkdir -p /home/vgoncalv/data/wordpress
+	sudo mkdir -p /home/vgoncalv/data/adminer
 
 hostname:
 	grep -q "vgoncalv.42.fr" /etc/hosts || echo "127.0.0.1 vgoncalv.42.fr" | sudo tee -a /etc/hosts
