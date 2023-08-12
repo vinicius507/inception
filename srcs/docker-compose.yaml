@@ -90,6 +90,7 @@ services:
       args:
         - FTP_PATH=/var/www/wordpress
         - FTP_USER
+    init: true
     restart: unless-stopped
     ports:
         - "20:20"
