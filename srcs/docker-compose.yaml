@@ -83,6 +83,34 @@ services:
       - REDIS_HOST
       - REDIS_PORT
 
+  vsftpd:
+    container_name: vsftpd
+    build:
+      context: ./requirements/bonus/vsftpd
+      args:
+        - FTP_PATH=/var/www/wordpress
+        - FTP_USER
+    restart: unless-stopped
+    ports:
+        - "20:20"
+        - "21:21"
+        - "21100-21110:21100-21110"
+    networks:
+      - inception
+    volumes:
+      - wordpress-data:/var/www/wordpress
+    healthcheck:
+      test: ss --tcp --listening --numeric | grep -q ':21'
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    environment:
+      - FTP_USER
+      - FTP_PWD
+
   nginx:
     container_name: nginx
     build:
