@@ -15,10 +15,10 @@ services:
       timeout: 10s
       retries: 3
     environment:
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        - MYSQL_USER
+        - MYSQL_PASSWORD
+        - MYSQL_DATABASE
+        - MYSQL_ROOT_PASSWORD
 
   redis:
     container_name: redis
@@ -67,21 +67,21 @@ services:
       redis:
         condition: service_healthy
     environment:
-      MYSQL_HOST: ${MYSQL_HOST}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      WP_URL: ${WP_URL}
-      WP_TITLE: ${WP_TITLE}
-      WP_SUB_TITLE: ${WP_SUB_TITLE}
-      WP_ADMIN_USER: ${WP_ADMIN_USER}
-      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
-      WP_ADMIN_PWD: ${WP_ADMIN_PWD}
-      WP_USER: ${WP_USER}
-      WP_USER_EMAIL: ${WP_USER_EMAIL}
-      WP_USER_PWD: ${WP_USER_PWD}
-      REDIS_HOST: ${REDIS_HOST}
-      REDIS_PORT: ${REDIS_PORT}
+      - MYSQL_HOST
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+      - WP_URL
+      - WP_TITLE
+      - WP_SUB_TITLE
+      - WP_ADMIN_USER
+      - WP_ADMIN_EMAIL
+      - WP_ADMIN_PWD
+      - WP_USER
+      - WP_USER_EMAIL
+      - WP_USER_PWD
+      - REDIS_HOST
+      - REDIS_PORT
 
   nginx:
     container_name: nginx
