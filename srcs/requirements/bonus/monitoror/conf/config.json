@@ -41,6 +41,13 @@
         "hostname": "nginx",
         "port": 443
       }
-    }
+    },
+    {
+      "type": "HTTP-STATUS",
+      "label": "Wordpress (HTTP)",
+      "params": {
+        "url": "http://nginx/"
+      }
+    },
   ]
 }
