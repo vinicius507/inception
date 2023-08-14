@@ -19,7 +19,6 @@ COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 RUN mkdir -p /var/www/adminer \
   && wget -qO /var/www/adminer/index.php https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php \
   && chown -R www-data:www-data /var/www/adminer \
-  && chmod -R 755 /var/www/adminer \
   && find /var/www/adminer -type d -exec chmod 755 {} \; \
   && find /var/www/adminer -type f -exec chmod 644 {} \;
 
