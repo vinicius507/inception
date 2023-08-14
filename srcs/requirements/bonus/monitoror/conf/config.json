@@ -1,0 +1,46 @@
+{
+  "version": "2.0",
+  "columns": 3,
+  "tiles": [
+    {
+      "type": "PORT",
+      "label": "MariaDB",
+      "params": {
+        "hostname": "mariadb",
+        "port": 3306
+      }
+    },
+    {
+      "type": "PORT",
+      "label": "Wordpress",
+      "params": {
+        "hostname": "wordpress",
+        "port": 9000
+      }
+    },
+    {
+      "type": "PORT",
+      "label": "Adminer",
+      "params": {
+        "hostname": "adminer",
+        "port": 8000
+      }
+    },
+    {
+      "type": "PORT",
+      "label": "Wordpress Ftp",
+      "params": {
+        "hostname": "vsftpd",
+        "port": 21
+      }
+    },
+    {
+      "type": "PORT",
+      "label": "Nginx SSL",
+      "params": {
+        "hostname": "nginx",
+        "port": 443
+      }
+    }
+  ]
+}
