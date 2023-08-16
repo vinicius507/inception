@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   mariadb:
+    image: mariadb:inception
     container_name: mariadb
     build: ./requirements/mariadb
     restart: unless-stopped
@@ -21,6 +22,7 @@ services:
         - MYSQL_ROOT_PASSWORD
 
   redis:
+    image: redis:inception
     container_name: redis
     build: ./requirements/bonus/redis
     restart: unless-stopped
@@ -33,6 +35,7 @@ services:
       retries: 3
 
   adminer:
+    image: adminer:inception
     container_name: adminer
     build: ./requirements/bonus/adminer
     networks:
@@ -49,6 +52,7 @@ services:
         condition: service_healthy
       
   wordpress:
+    image: wordpress:inception
     container_name: wordpress
     build: ./requirements/wordpress
     restart: unless-stopped
@@ -84,6 +88,7 @@ services:
       - REDIS_PORT
 
   vsftpd:
+    image: vsftpd:inception
     container_name: vsftpd
     build:
       context: ./requirements/bonus/vsftpd
@@ -113,6 +118,7 @@ services:
       - FTP_PWD
 
   nginx:
+    image: nginx:inception
     container_name: nginx
     build:
       context: ./requirements/nginx
@@ -138,6 +144,7 @@ services:
         condition: service_healthy
 
   monitoror:
+    image: monitoror:inception
     container_name: monitoror
     build: ./requirements/bonus/monitoror
     restart: unless-stopped
