@@ -1,0 +1,14 @@
+server {
+	listen 8081;
+
+	root /var/www/static-website;
+	index index.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location = /script.js {
+		alias /var/www/static-website/script.js;
+	}
+}
