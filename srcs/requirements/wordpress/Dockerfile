@@ -28,4 +28,6 @@ RUN chmod u+x ./entrypoint.sh
 
 EXPOSE 9000
 
+STOPSIGNAL SIGQUIT
+
 ENTRYPOINT ["/entrypoint.sh"]

@@ -24,4 +24,6 @@ RUN mkdir -p /var/www/adminer \
 
 EXPOSE 8000
 
+STOPSIGNAL SIGQUIT
+
 ENTRYPOINT ["php-fpm8.2", "-F"]
