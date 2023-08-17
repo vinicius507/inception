@@ -50,3 +50,4 @@ The project has the following architecture:
   - Adminer using `php-fpm` on port `8000`
   - Proxy pass for an `nginx` server serving a static website on port `8081`
   - Proxy pass for a `monitoror` instance, with status checks for all services on port `8080`
+- An FTP server serving the Wordpress website files.
