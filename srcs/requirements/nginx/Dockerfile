@@ -16,4 +16,6 @@ RUN ln -s /etc/nginx/sites-available/vgoncalv.42.fr /etc/nginx/sites-enabled/vgo
 
 EXPOSE 443
 
+STOPSIGNAL SIGQUIT
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
