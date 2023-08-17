@@ -31,7 +31,7 @@ server {
 	    proxy_set_header Host $http_host;
 	}
 
-	location /website {
+	location /website/ {
 	    proxy_pass http://static-website:8081/;
 		proxy_set_header X-Real-IP $remote_addr;
 	    proxy_set_header Host $http_host;
