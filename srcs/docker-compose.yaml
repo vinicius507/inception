@@ -51,6 +51,7 @@ services:
     image: adminer:inception
     container_name: adminer
     build: ./requirements/bonus/adminer
+    restart: unless-stopped
     networks:
       - inception
     volumes:
