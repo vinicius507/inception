@@ -1,21 +1,21 @@
-COMPOSE_FILE=./srcs/docker-compose.yaml
+COMPOSE_FLAGS = -f ./srcs/docker-compose.yaml
 
 all: up
 
 up: hostname docker-mounts
-	sudo docker-compose -f $(COMPOSE_FILE) up -d
+	sudo docker-compose ${COMPOSE_FLAGS} up -d
 
 debug: hostname docker-mounts
-	sudo docker-compose -f $(COMPOSE_FILE) up
+	sudo docker-compose ${COMPOSE_FLAGS} up --build
 
 down:
-	sudo docker-compose -f $(COMPOSE_FILE) down
+	sudo docker-compose ${COMPOSE_FLAGS} down
 
 build:
-	sudo docker-compose -f $(COMPOSE_FILE) build --no-cache
+	sudo docker-compose ${COMPOSE_FLAGS} build --no-cache
 
 clean:
-	sudo docker-compose -f $(COMPOSE_FILE) down --rmi all --remove-orphans
+	sudo docker-compose ${COMPOSE_FLAGS} down --rmi all --remove-orphans
 
 fclean: clean
 	sudo rm -rf /home/vgoncalv/data
