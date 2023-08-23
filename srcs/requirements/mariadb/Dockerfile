@@ -16,8 +16,9 @@ RUN mkdir -p /var/lib/mysql /var/run/mysqld \
 COPY ./conf/my.cnf /etc/mysql/my.cnf
 COPY ./tools/entrypoint.sh entrypoint.sh
 
-RUN chmod +x entrypoint.sh
+RUN chown mysql:mysql entrypoint.sh && chmod 754 entrypoint.sh
 
+USER mysql
 EXPOSE 3306
 
 ENTRYPOINT ["/entrypoint.sh"]
