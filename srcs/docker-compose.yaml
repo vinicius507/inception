@@ -35,7 +35,7 @@ services:
       retries: 3
 
   static-website:
-    image: static-website
+    image: static-website:inception
     container_name: static-website
     build: ./requirements/bonus/static-website
     restart: unless-stopped
