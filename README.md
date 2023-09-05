@@ -1,3 +1,13 @@
+<p align="center">
+    <img src="https://game.42sp.org.br/static/assets/achievements/inceptionm.png">
+</p>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/OS-Linux-blue" alt="OS">
+    <img src="https://img.shields.io/badge/Grade-125%2F100-brightgreen.svg" alt="Grade">
+    <img src="https://img.shields.io/badge/Status-Completed-brightgreen.svg" alt="Status">
+</p>
+
 # Inception
 This repository contains my Inception project at 42 School. The project focuses on gaining hands-on experience with Docker and Docker Compose while setting up and orchestrating a collection of services.
 
